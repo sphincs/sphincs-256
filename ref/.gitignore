@@ -1,0 +1,5 @@
+test/gen_testvectors
+test/speed
+test/test_horst
+test/test_sign
+test/test_wots
