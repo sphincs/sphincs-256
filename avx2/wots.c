@@ -147,8 +147,9 @@ void wots_verify(unsigned char pk[WOTS_L*HASH_BYTES], const unsigned char sig[WO
     for(j=0; (j < WOTS_W) & (cnt > 0); )
     {
       for (k = 0; k < 8; k++)
-        for (l = 0; l < 32; l++)
-          tmp[l + k*HASH_BYTES] ^= (masks+(basew[i+k]*HASH_BYTES)+(j*HASH_BYTES))[l];
+        if (cnt & (1 << k))
+          for (l = 0; l < 32; l++)
+            tmp[l + k*HASH_BYTES] ^= (masks+(basew[i+k]*HASH_BYTES)+(j*HASH_BYTES))[l];
 
       hash_n_n_8x(tmp, tmp);
 
